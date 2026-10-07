@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บ้านธรรมสถิตย์ - Baan Thumsathis</title>
+    <style>
+        :root {
+            --bg-dark-green: #1A3026;
+            --bg-card: #223D31;
+            --accent-gold: #C5A059;
+            --gold-hover: #E5C17C;
+            --text-light: #F4F1EA;
+            --text-muted: #A3B1A8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark-green);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            background-color: rgba(26, 48, 38, 0.95);
+            border-bottom: 1px solid var(--accent-gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .logo-text {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark-green);
+        }
+
+        /* Hamburger Menu for Mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-gold);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: flex;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background-color: #12221B;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.3s ease-in-out;
+                border-left: 1px solid var(--accent-gold);
+                box-shadow: -5px 0 20px rgba(0,0,0,0.6);
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 3rem 5% 4rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .hero-logo {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0px 6px 15px rgba(0,0,0,0.6));
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h2 {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            font-weight: normal;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-banner-img {
+            width: 100%;
+            max-width: 900px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--accent-gold);
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: var(--bg-dark-green);
+            padding: 0.8rem 1.8rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-hover);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.8rem 1.8rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(197, 160, 89, 0.15);
+            color: var(--gold-hover);
+        }
+
+        /* Founder Showcase Section */
+        .founder-section {
+            padding: 4rem 5%;
+            background-color: rgba(26, 48, 38, 0.6);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .founder-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2.5rem;
+            padding: 2.5rem;
+            align-items: start;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .founder-container {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+        }
+
+        .founder-img-box {
+            text-align: center;
+            position: sticky;
+            top: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .founder-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background-color: #1A3026;
+            border-radius: 8px;
+            border: 1px solid var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .founder-img:hover {
+            transform: scale(1.02);
+        }
+
+        .founder-content h3 {
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .founder-national-artist {
+            color: var(--gold-hover);
+            font-size: 1.05rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+        }
+
+        .founder-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 1.02rem;
+        }
+
+        .founder-content .founder-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .biography-detail {
+            margin-top: 1.5rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.3);
+            padding-top: 1.5rem;
+        }
+
+        .biography-detail h4 {
+            color: var(--accent-gold);
+            margin: 1.2rem 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .biography-detail ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .biography-detail li {
+            margin-bottom: 0.4rem;
+            line-height: 1.6;
+        }
+
+        /* Highlights Section */
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin: 4rem 0 2rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 0 5% 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .card h3 {
+            color: var(--accent-gold);
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card-hint {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-top: 0.8rem;
+            text-decoration: underline;
+        }
+
+        /* Article Specific Styles */
+        .article-card {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .article-excerpt {
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Video Showcase Section Styles */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 0 5% 4rem;
+        }
+
+        .video-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            margin-bottom: 1rem;
+            background-color: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-card h3 {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .video-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Modals / Pop-ups */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal-content {
+            max-width: 85%;
+            max-height: 70vh;
+            border-radius: 8px;
+            border: 2px solid var(--accent-gold);
+            object-fit: contain;
+        }
+
+        .modal-caption {
+            margin-top: 1rem;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--text-light);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-gold);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(197, 160, 89, 0.3);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            cursor: pointer;
+            font-size: 2rem;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .modal-nav:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark-green);
+        }
+
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+
+        /* Article Modal Custom Styling */
+        .article-modal-box {
+            background-color: var(--bg-card);
+            border: 2px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 2.5rem;
+            max-width: 750px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            color: var(--text-light);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .article-modal-box h2 {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .article-modal-box .meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .article-modal-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .article-modal-box p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        /* Visitor Info Box */
+        .info-box {
+            margin: 2rem 5% 4rem;
+            padding: 2.5rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--accent-gold);
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .info-item h4 {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-item a {
+            color: var(--gold-hover);
+            text-decoration: none;
+        }
+
+        .info-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #12221B;
+            border-top: 1px solid var(--accent-gold);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo-container">
+            <img src="logo.png" alt="บ้านธรรมสถิตย์" class="logo-img">
+            <div class="logo-text" id="site-logo">บ้านธรรมสถิตย์</div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="lang-text" onclick="closeMenu()" data-th="หน้าแรก" data-en="Home" data-zh="首页">หน้าแรก</a></li>
+            <li><a href="#founder" class="lang-text" onclick="closeMenu()" data-th="ร้อยตรี ดร.ทวี บูรณเขตต์" data-en="Sgt. Maj. Dr. Thawee" data-zh="贾特威博士">ร้อยตรี ดร.ทวี บูรณเขตต์</a></li>
+            <li><a href="#exhibition" class="lang-text" onclick="closeMenu()" data-th="นิทรรศการ" data-en="Exhibition" data-zh="展览">นิทรรศการ</a></li>
+            <li><a href="#articles" class="lang-text" onclick="closeMenu()" data-th="บทความ" data-en="Articles" data-zh="文章">บทความ</a></li>
+            <li><a href="#videos" class="lang-text" onclick="closeMenu()" data-th="วิดีโอ" data-en="Videos" data-zh="视频">วิดีโอ</a></li>
+            <li><a href="#workshop" class="lang-text" onclick="closeMenu()" data-th="เวิร์กชอป" data-en="Workshops" data-zh="工作坊">เวิร์กชอป</a></li>
+            <li><a href="#visit" class="lang-text" onclick="closeMenu()" data-th="เข้าชม & ติดต่อ" data-en="Visit & Contact" data-zh="参观与联系">เข้าชม & ติดต่อ</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="lang-btn" onclick="toggleLanguage()">EN</button>
+            <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <img src="logo.png" alt="ตราบ้านธรรมสถิตย์" class="hero-logo">
+        <h1 class="lang-text" data-th="บ้านธรรมสถิตย์" data-en="Baan Thumsathis" data-zh="彭世洛 ธรรมสถิตย์ 艺术馆">บ้านธรรมสถิตย์</h1>
+        <h2 class="lang-text" data-th="ผู้สืบสานสกุลช่างพิษณุโลก จ่าทวี" data-en="Inheritors of Phitsanulok Craftsman Lineage by Sgt. Maj. Thawee" data-zh="彭世洛 传统工艺流派“贾特威” (Sgt. Maj. Thawee) 传人">ผู้สืบสานสกุลช่างพิษณุโลก จ่าทวี</h2>
+        <p class="lang-text" 
+           data-th="แหล่งเรียนรู้ความโดดเด่นแห่งงานพุทธศิลป์ สกุลช่างพิษณุโลก จ่าทวี พร้อมกิจกรรมเวิร์กชอป" 
+           data-en="A learning center dedicated to Phitsanulok's Buddhist art heritage, fine craftsmanship, and interactive workshops."
+           data-zh="彭世洛传统佛教艺术与传统工艺学习中心，提供丰富的手工体验工作坊">
+           แหล่งเรียนรู้ความโดดเด่นแห่งงานพุทธศิลป์ สกุลช่างพิษณุโลก จ่าทวี พร้อมกิจกรรมเวิร์กชอป
+        </p>
+
+        <img src="new-banner.jpg" alt="บรรยากาศบ้านธรรมสถิตย์" class="hero-banner-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/900x380/223D31/C5A059?text=Baan+Thumsathis';">
+
+        <div class="hero-buttons">
+            <a href="#visit" class="btn-gold lang-text" data-th="ติดต่อเข้าชม" data-en="Plan Your Visit" data-zh="预约参观">ติดต่อเข้าชม</a>
+            <a href="https://maps.app.goo.gl/iLSVSCJrQBqy1eLS8?g_st=ic" target="_blank" class="btn-outline lang-text" data-th="📍 แผนที่เดินทาง" data-en="📍 Google Maps" data-zh="📍 谷歌地图">📍 แผนที่เดินทาง</a>
+        </div>
+    </section>
+
+    <!-- Founder Showcase Section -->
+    <section class="founder-section" id="founder">
+        <div class="founder-container">
+            <div class="founder-img-box">
+                <img src="roytree.jpg" alt="ร้อยตรี ดร.ทวี บูรณเขตต์ ภาพที่ ๑" class="founder-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/1A3026/C5A059?text=Dr.Thawee+1';">
+                <img src="roytree-2.jpg" alt="ร้อยตรี ดร.ทวี บูรณเขตต์ ภาพที่ ๒" class="founder-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/1A3026/C5A059?text=Dr.Thawee+2';">
+            </div>
+            <div class="founder-content">
+                <h3 class="lang-text" data-th="ร้อยตรี ดร.ทวี บูรณเขตต์" data-en="Sub Lieutenant Dr. Thawee Booranaket" data-zh="贾特威·布拉纳克特 博士 (Sub Lt. Dr. Thawee Booranaket)">ร้อยตรี ดร.ทวี บูรณเขตต์</h3>
+                <div class="founder-national-artist lang-text" 
+                     data-th="ศิลปินแห่งชาติ ประจำปี พ.ศ. ๒๕๖๖ สาขาทัศนศิลป์ (ประณีตศิลป์–ช่างปั้นและช่างหล่อ)" 
+                     data-en="National Artist 2023 in Visual Arts (Fine Arts - Sculptor and Founder)"
+                     data-zh="2023年国家艺术家（视觉艺术·雕塑与铸造工艺领域）">
+                    ศิลปินแห่งชาติ ประจำปี พ.ศ. ๒๕๖๖ สาขาทัศนศิลป์ (ประณีตศิลป์–ช่างปั้นและช่างหล่อ)
+                </div>
+                <div class="founder-subtitle lang-text" 
+                     data-th="ปูชนียบุคคลแห่งศิลปหัตถกรรมไทย และผู้ก่อตั้งสกุลช่างพิษณุโลก" 
+                     data-en="A revered pioneer of Thai arts & crafts and founder of the Phitsanulok Craftsman School"
+                     data-zh="泰国工艺美术界的尊崇前辈与彭世洛传统工艺流派奠基人">
+                    ปูชนียบุคคลแห่งศิลปหัตถกรรมไทย และผู้ก่อตั้งสกุลช่างพิษณุโลก
+                </div>
+                <p class="lang-text" 
+                   data-th="ร้อยตรี ดร.ทวี บูรณเขตต์ ถือกำเนิดเมื่อวันที่ ๙ ตุลาคม พ.ศ. ๒๔๗๕ ณ ศาลาช่องฟ้า บ้านคลองเตาไห (บ้านชีปะขาวหาย) ตำบลหัวรอ อำเภอเมือง จังหวัดพิษณุโลก ทรงคุณูปการในด้านช่างศิลป์หลายสาขา และเป็นผู้ทุ่มเทแรงกายแรงใจตลอดชีวิตในการอนุรักษ์ ฟื้นฟู และสืบสานงานพุทธศิลป์ ประติมากรรมไทยโบราณ จนเป็นที่ประจักษ์ยอมรับในระดับประเทศ" 
+                   data-en="Sub Lieutenant Dr. Thawee Booranaket was born on October 9, 1932, at Sala Chong Fa, Phitsanulok. He dedicated his life to preserving, restoring, and advancing traditional Thai Buddhist art and craftsmanship."
+                   data-zh="贾特威·布拉纳克特博士出生于1932年10月9日。他毕生致力于保护、修复和传承泰国佛教艺术与传统工艺。">
+                    ร้อยตรี ดร.ทวี บูรณเขตต์ ถือกำเนิดเมื่อวันที่ ๙ ตุลาคม พ.ศ. ๒๔๗๕ ณ ศาลาช่องฟ้า บ้านคลองเตาไห (บ้านชีปะขาวหาย) ตำบลหัวรอ อำเภอเมือง จังหวัดพิษณุโลก ได้รับการถ่ายทอดความรู้ทางช่างศิลป์จากคุณพ่อผู้เป็นครูศิลปะ และพัฒนาตนเองจนมีความเชี่ยวชาญรอบด้าน ทั้งวาดรูป เขียนแบบ แกะไม้ และหล่อโลหะ
+                </p>
+
+                <div class="biography-detail">
+                    <h4>ผลงานและเกียรติประวัติสำคัญ</h4>
+                    <p><strong>ผลงานเด่น:</strong> อนุสาวรีย์สมเด็จพระนเรศวรมหาราช, พระพุทธชินราชรุ่น ภ.ป.ร., รุ่น ม.ว.ก., รุ่นพระมาลาเบี่ยง, และการก่อตั้ง <em>"พิพิธภัณฑ์พื้นบ้าน จ่าทวี"</em> พิพิธภัณฑ์พื้นบ้านไทยแห่งแรกที่รวบรวมเครื่องมือเครื่องใช้พื้นบ้านสะท้อนวิถีชีวิตอดีต</p>
+                    
+                    <h4>รางวัลและเกียรติยศที่ได้รับ:</h4>
+                    <ul>
+                        <li><strong>พ.ศ. ๒๕๒๖:</strong> รางวัลผู้มีผลงานดีเด่นด้านวัฒนธรรม สาขาการช่างฝีมือ</li>
+                        <li><strong>พ.ศ. ๒๕๒๗:</strong> ปริญญาศิลปศาสตรดุษฎีบัณฑิตกิตติมศักดิ์ สาขาวิชาศิลปะ (มหาวิทยาลัยนเรศวรในปัจจุบัน)</li>
+                        <li><strong>พ.ศ. ๒๕๔๑:</strong> ปริญญาศิลปศาสตรดุษฎีบัณฑิตกิตติมศักดิ์ สาขามานุษยวิทยา (มหาวิทยาลัยศิลปากร)</li>
+                        <li><strong>พ.ศ. ๒๕๖๐:</strong> ได้รับยกย่องเป็น "ครูศิลป์ของแผ่นดิน"</li>
+                        <li><strong>พ.ศ. ๒๕๖๔:</strong> ได้รับรางวัล เพชรสยาม สาขาการช่างฝีมือ</li>
+                        <li><strong>พ.ศ. ๒๕๖๕:</strong> ได้รับยกย่องให้เป็น "ศิลปาจารย์"</li>
+                        <li><strong>พ.ศ. ๒๕๖๖:</strong> ได้รับยกย่องเป็น <strong>ศิลปินแห่งชาติ สาขาทัศนศิลป์ (ประณีตศิลป์–ช่างปั้นและช่างหล่อ)</strong></li>
+                        <li><strong>พ.ศ. ๒๕๖๖:</strong> ปริญญาศิลปกรรมศาสตรดุษฎีบัณฑิตกิตติมศักดิ์ สาขาศิลปะและการออกแบบ</li>
+                        <li><strong>พ.ศ. ๒๕๖๗:</strong> พระบรมราชโองการโปรดเกล้าฯ พระราชทานยศ <strong>"ร้อยตรี"</strong> เป็นกรณีพิเศษ</li>
+                    </ul>
+                </div>
+
+                <p class="lang-text" style="margin-top: 1.5rem;"
+                   data-th="บ้านธรรมสถิตย์แห่งนี้ ถือเป็นอีกหนึ่งแหล่งสืบสานเจตนารมณ์ในการถ่ายทอดองค์ความรู้ ภูมิปัญญา และคุณค่าทางศิลปวัฒนธรรมให้คงอยู่คู่แผ่นดินไทยสืบไป" 
+                   data-en="Baan Thumsathis serves as a continuation of his vision, passing down knowledge, wisdom, and cultural heritage to future generations."
+                   data-zh="ธรรมสถิตย์艺术馆作为传承其宏愿的重要阵地，致力于将宝贵的传统知识、智慧与文化艺术价值在泰国大地上代代相传。">
+                    บ้านธรรมสถิตย์แห่งนี้ ถือเป็นอีกหนึ่งแหล่งสืบสานเจตนารมณ์ในการถ่ายทอดองค์ความรู้ ภูมิปัญญา และคุณค่าทางศิลปวัฒนธรรมให้คงอยู่คู่แผ่นดินไทยสืบไป
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <h2 class="section-title lang-text" data-th="ห้องนิทรรศการ & กิจกรรม" data-en="Exhibitions & Activities" data-zh="展览与活动">ห้องนิทรรศการ & กิจกรรม</h2>
+    <div class="grid-container" id="exhibition">
+        
+        <div class="card" onclick="openGallery('exhibition')">
+            <img src="exhibition.jpg" alt="ห้องนิทรรศการสกุลช่าง" class="card-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/1A3026/C5A059?text=Exhibition';">
+            <h3 class="lang-text" data-th="ห้องนิทรรศการสกุลช่าง" data-en="Craftsmanship Exhibition" data-zh="传统工艺展厅">ห้องนิทรรศการสกุลช่าง</h3>
+            <p class="lang-text" 
+               data-th="จัดแสดงความโดดเด่นและเอกลักษณ์อันประณีตของสกุลช่างพิษณุโลก (จ่าทวี) งานพุทธศิลป์ ประติมากรรม และงานประณีตศิลป์ชั้นสูง" 
+               data-en="Showcasing the unique identity and exquisite mastery of the Phitsanulok Craftsman School (Sgt. Maj. Thawee), fine sculptures, and sacred Buddhist art."
+               data-zh="展示彭世洛传统工艺流派 (Sgt. Maj. Thawee) 精湛的佛教艺术、雕塑与高级传统工艺">
+               จัดแสดงความโดดเด่นและเอกลักษณ์อันประณีตของสกุลช่างพิษณุโลก (จ่าทวี) งานพุทธศิลป์ ประติมากรรม และงานประณีตศิลป์ชั้นสูง
+            </p>
+            <span class="card-hint lang-text" data-th="รูปภาพเพิ่มเติม" data-en="More Photos" data-zh="查看更多图片">รูปภาพเพิ่มเติม</span>
+        </div>
+
+        <div class="card" id="workshop" onclick="openGallery('candle')">
+            <img src="candle-workshop.jpg" alt="เวิร์กชอปทำเทียนหอม" class="card-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/1A3026/C5A059?text=Candle+Workshop';">
+            <h3 class="lang-text" data-th="เวิร์กชอปทำเทียนหอม" data-en="Scented Candle Workshop" data-zh="香氛蜡烛 DIY 工作坊">เวิร์กชอปทำเทียนหอม</h3>
+            <p class="lang-text" 
+               data-th="กิจกรรมเวิร์กชอปสร้างสรรค์เทียนหอม DIY" 
+               data-en="Interactive DIY scented candle crafting workshop."
+               data-zh="创意香氛蜡烛 DIY 手工制作体验">
+               กิจกรรมเวิร์กชอปสร้างสรรค์เทียนหอม DIY
+            </p>
+            <span class="card-hint lang-text" data-th="รูปภาพเพิ่มเติม" data-en="More Photos" data-zh="查看更多图片">รูปภาพเพิ่มเติม</span>
+        </div>
+
+        <div class="card" onclick="openGallery('learning')">
+            <img src="learning.jpg" alt="ภูมิปัญญา & การเรียนรู้" class="card-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/1A3026/C5A059?text=Heritage+Learning';">
+            <h3 class="lang-text" data-th="ภูมิปัญญา & การเรียนรู้" data-en="Heritage & Learning" data-zh="传统智慧与学习">ภูมิปัญญา & การเรียนรู้</h3>
+            <p class="lang-text" 
+               data-th="ส่งเสริมการเรียนรู้งานช่างศิลป์โบราณ การลงรักปิดทอง และเทคนิคช่างพื้นบ้านอันเป็นเอกลักษณ์" 
+               data-en="Promoting traditional craft education, gold-leaf gilding, and authentic local heritage techniques."
+               data-zh="传承古法手工艺、贴金漆艺及独特的本土传统技艺学习">
+               ส่งเสริมการเรียนรู้งานช่างศิลป์โบราณ การลงรักปิดทอง และเทคนิคช่างพื้นบ้านอันเป็นเอกลักษณ์
+            </p>
+            <span class="card-hint lang-text" data-th="รูปภาพเพิ่มเติม" data-en="More Photos" data-zh="查看更多图片">รูปภาพเพิ่มเติม</span>
+        </div>
+
+        <div class="card" onclick="openGallery('activity4')">
+            <img src="activity-4.jpg" alt="กิจกรรมพิเศษ & สาธิตงานช่าง" class="card-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/1A3026/C5A059?text=Special+Activities';">
+            <h3 class="lang-text" data-th="กิจกรรมพิเศษ & สาธิตงานช่าง" data-en="Special Activities & Demonstrations" data-zh="特色活动与现场演示">กิจกรรมพิเศษ & สาธิตงานช่าง</h3>
+            <p class="lang-text" 
+               data-th="การสาธิตกรรมวิธีการทำหัตถศิลป์โบราณ และกิจกรรมแลกเปลี่ยนเรียนรู้งานศิลปวัฒนธรรม" 
+               data-en="Live demonstrations of traditional craftsmanship techniques and cultural art exchange activities."
+               data-zh="传统手工艺制作现场演示与文化艺术交流体验活动">
+               การสาธิตกรรมวิธีการทำหัตถศิลป์โบราณ และกิจกรรมแลกเปลี่ยนเรียนรู้งานศิลปวัฒนธรรม
+            </p>
+            <span class="card-hint lang-text" data-th="รูปภาพเพิ่มเติม" data-en="More Photos" data-zh="查看更多图片">รูปภาพเพิ่มเติม</span>
+        </div>
+
+    </div>
+
+    <!-- Articles & Knowledge Section -->
+    <h2 class="section-title lang-text" id="articles" data-th="📖 บทความ & เรื่องน่ารู้" data-en="📖 Articles & Heritage Stories" data-zh="📖 传统文化文章">📖 บทความ & เรื่องน่ารู้</h2>
+    <div class="grid-container">
+        
+        <div class="card article-card" onclick="openArticle('art1')">
+            <img src="article-1.jpg" alt="เอกลักษณ์สกุลช่างพิษณุโลก" class="card-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/1A3026/C5A059?text=Phitsanulok+Art';">
+            <div class="article-date">๒๕๖๙-๐๓-๐๑</div>
+            <h3 class="lang-text" 
+                data-th="สายน้ำแห่งศรัทธา จากตำนานปาฏิหาริย์ สู่หัตถศิลป์ 'สกุลช่างจ่าทวี'" 
+                data-en="Stream of Faith: From Sacred Legend to Master Craftsmanship of Sgt. Maj. Thawee's School of Art" 
+                data-zh="信仰之源：从神奇传说到“贾特威流派”的佛雕艺术">
+                สายน้ำแห่งศรัทธา จากตำนานปาฏิหาริย์ สู่หัตถศิลป์ "สกุลช่างจ่าทวี"
+            </h3>
+            <p class="article-excerpt lang-text" 
+               data-th="หากกล่าวถึง พระพุทธชินราช พระพุทธรูปที่ได้รับการยกย่องว่างดงามที่สุดองค์หนึ่งในสยาม ย่อมต้องนึกถึงตำนานการสร้างในสมัยพญาลิไท..." 
+               data-en="Speaking of Phra Buddha Chinnarat, one of the most revered Buddha images in Siam, it recalls the legend of its creation during the reign of Phaya Lithai..." 
+               data-zh="说起成功佛，作为暹罗最受尊崇的佛像之一，人们自然会联想到它在立泰王时期的铸造传说..."
+               style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+               หากกล่าวถึง พระพุทธชินราช พระพุทธรูปที่ได้รับการยกย่องว่างดงามที่สุดองค์หนึ่งในสยาม ย่อมต้องนึกถึงตำนานการสร้างในสมัยพญาลิไท (พระมหาธรรมราชาที่ ๑) ที่การเททองหล่อองค์พระประสบปัญหาถึงสองครั้งสองครา...
+            </p>
+            <span class="card-hint lang-text" data-th="อ่านบทความฉบับเต็ม" data-en="Read Full Article" data-zh="阅读全文">อ่านบทความฉบับเต็ม</span>
+        </div>
+
+        <div class="card article-card" onclick="openArticle('art2')">
+            <img src="article-2.jpg" alt="มุมเงย" class="card-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/1A3026/C5A059?text=Perspective+Distortion';">
+            <div class="article-date">๒๕๖๙-๐๒-๑๕</div>
+            <h3 class="lang-text" 
+                data-th="มุมเงย" 
+                data-en="Visual Correction for Low-Angle Viewing (Perspective Distortion)" 
+                data-zh="低角度仰视的视觉矫正 (Perspective Distortion)">
+                มุมเงย (Perspective Distortion)
+            </h3>
+            <p class="article-excerpt lang-text" 
+               data-th="เกิดจากประสบการณ์ในการปั้น - หล่อพุทธศิลป์สกุลช่างพิษณุโลก จ่าทวี กล่าวคือ เมื่อผู้ศรัทธาต้องเงยหน้ามองพระพุทธรูปจากระดับต่ำขึ้นไปสูง..." 
+               data-en="Reflecting generations of experience in sculpting and casting Buddhist images within the Phitsanulok School of Art by Sgt. Maj. Thawee..." 
+               data-zh="源于彭世洛“贾特威流派”在佛教艺术雕塑与铸造方面的世代经验...">
+               เกิดจากประสบการณ์ในการปั้น - หล่อพุทธศิลป์สกุลช่างพิษณุโลก จ่าทวี กล่าวคือ เมื่อผู้ศรัทธาต้องเงยหน้ามองพระพุทธรูปจากระดับต่ำขึ้นไปสูง...
+            </p>
+            <span class="card-hint lang-text" data-th="อ่านบทความฉบับเต็ม" data-en="Read Full Article" data-zh="阅读全文">อ่านบทความฉบับเต็ม</span>
+        </div>
+
+        <div class="card article-card" onclick="openArticle('art3')">
+            <img src="article-3.jpg" alt="การอนุรักษ์ภูมิปัญญา" class="card-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/1A3026/C5A059?text=Preservation';">
+            <div class="article-date">๒๕๖๙-๐๑-๒๐</div>
+            <h3 class="lang-text" 
+                data-th="การอนุรักษ์กระจกเกรียบและกระจกจืน" 
+                data-en="Preservation of Kriap and Chun Glass Mosaic Crafts" 
+                data-zh="Kriap 与 Chun 薄片玻璃镶嵌工艺的保护与传承">
+                การอนุรักษ์กระจกเกรียบและกระจกจืน
+            </h3>
+            <p class="article-excerpt lang-text" 
+               data-th="ความเชื่อในงานประติมากรรมการประดับกระจกสะท้อนถึง แสงสว่างแห่งธรรม และการอนุรักษ์กระจกโบราณกว่า 150 ปี..." 
+               data-en="The belief in glass mosaic decoration reflecting the 'Light of Dhamma' and restoring ancient glass techniques lost for over 150 years..." 
+               data-zh="雕塑中的贴镜镶嵌艺术承载着“佛法之光”的信仰，以及对失传150多年传统玻璃工艺的保护..."
+               style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+               ความเชื่อในงานประติมากรรมการประดับกระจกสะท้อนถึง แสงสว่างแห่งธรรม และการอนุรักษ์กระจกโบราณกว่า ๑๕๐ ปี...
+            </p>
+            <span class="card-hint lang-text" data-th="อ่านบทความฉบับเต็ม" data-en="Read Full Article" data-zh="阅读全文">อ่านบทความฉบับเต็ม</span>
+        </div>
+
+        <div class="card article-card" onclick="openArticle('art4')">
+            <img src="article-4.jpg" alt="รัศมีดาริกาแห่งพุทธบูชา" class="card-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/1A3026/C5A059?text=Pearl+Inlay';">
+            <div class="article-date">๒๕๖๙-๐๓-๑๐</div>
+            <h3 class="lang-text" 
+                data-th="รัศมีดาริกาแห่งพุทธบูชา: อลังการงานประดับมุกบนฐานพุทธปฏิมา" 
+                data-en="Radiance of Pearl Offerings: The Magnificent Pearl Inlay on Buddha Image Bases" 
+                data-zh="佛宝珍珠之光：佛像底座珍珠镶嵌艺术的辉煌">
+                รัศมีดาริกาแห่งพุทธบูชา: อลังการงานประดับมุกบนฐานพุทธปฏิมา
+            </h3>
+            <p class="article-excerpt lang-text" 
+               data-th="สุนทรียภาพที่ปรากฏบนฐานพระพุทธรูปจากการบรรจงประดับ 'เปลือกหอยมุก' มิใช่เพียงการตกแต่งเพื่อความตระการตา..." 
+               data-en="The aesthetics appearing on Buddha image bases through the meticulous inlay of pearl shells are not merely for physical splendor..." 
+               data-zh="珍珠贝壳精细镶嵌在佛像底座上所展现的美学，不仅是为了视觉上的壮丽..."
+               style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+               สุนทรียภาพที่ปรากฏบนฐานพระพุทธรูปจากการบรรจงประดับ "เปลือกหอยมุก" มิใช่เพียงการตกแต่งเพื่อความตระการตาในทางกายภาพเท่านั้น หากแต่เป็นงานประณีตศิลป์ที่สะท้อนถึงปัญญาบารมีและความเลื่อมใสอันสถิตอยู่ในจิตวิญญาณของผู้สร้างสรรค์
+            </p>
+            <span class="card-hint lang-text" data-th="อ่านบทความฉบับเต็ม" data-en="Read Full Article" data-zh="阅读全文">อ่านบทความฉบับเต็ม</span>
+        </div>
+
+    </div>
+
+    <!-- Video Showcase Section -->
+    <h2 class="section-title lang-text" id="videos" data-th="🎬 วิดีโอแนะนำ" data-en="🎬 Featured Videos" data-zh="🎬 推荐视频">🎬 วิดีโอแนะนำ</h2>
+    <div class="video-grid">
+        
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls preload="metadata">
+                    <source src="video-1.mp4#t=0.1" type="video/mp4">
+                    เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+                </video>
+            </div>
+            <h3 class="lang-text" data-th="แนะนำบ้านธรรมสถิตย์" data-en="Introduction to Baan Thumsathis" data-zh="ธรรมสถิตย์ 艺术馆简介">แนะนำบ้านธรรมสถิตย์</h3>
+            <p class="lang-text" 
+               data-th="เปิดบ้านธรรมสถิตย์" 
+               data-en="Discover the inspiration behind preserving Phitsanulok's Buddhist art heritage."
+               data-zh="走进 ธรรมสถิตย์ 艺术馆，探索传统佛教艺术传承">
+               เปิดบ้านธรรมสถิตย์
+            </p>
+        </div>
+
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls preload="metadata">
+                    <source src="video-2.mp4#t=0.1" type="video/mp4">
+                    เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+                </video>
+            </div>
+            <h3 class="lang-text" data-th="ความเป็นมาของสกุลช่างพิษณุโลก จ่าทวี" data-en="History of Phitsanulok Craftsman School (Sgt. Maj. Thawee)" data-zh="彭世洛 Sgt. Maj. Thawee 传统工艺历史">ความเป็นมาของสกุลช่างพิษณุโลก จ่าทวี</h3>
+            <p class="lang-text" 
+               data-th="ความเป็นมาบ้านธรรมสถิตย์" 
+               data-en="The rich history and heritage of Baan Thumsathis."
+               data-zh="ธรรมสถิตย์ 艺术馆的发展历程">
+               ความเป็นมาบ้านธรรมสถิตย์
+            </p>
+        </div>
+
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls preload="metadata">
+                    <source src="video-3.mp4#t=0.1" type="video/mp4">
+                    เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+                </video>
+            </div>
+            <h3 class="lang-text" data-th="การสาธิตหัตถศิลป์โบราณ" data-en="Traditional Craft Demonstration" data-zh="传统手工艺演示">การสาธิตหัตถศิลป์โบราณ</h3>
+            <p class="lang-text" 
+               data-th="เรียนรู้กรรมวิธีการสร้างสรรค์งานพุทธศิลป์และหัตถกรรมชั้นสูง" 
+               data-en="Explore the traditional techniques and meticulous steps of fine Buddhist art creation."
+               data-zh="探索高级传统佛教艺术与手工艺的精湛制作技艺">
+               เรียนรู้กรรมวิธีการสร้างสรรค์งานพุทธศิลป์และหัตถกรรมชั้นสูง
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Modal Popup -->
+    <div id="galleryModal" class="modal">
+        <span class="modal-close" onclick="closeGallery()">&times;</span>
+        <button class="modal-nav prev-btn" onclick="changeImage(-1)">&#10094;</button>
+        <img id="modalImg" class="modal-content" src="" alt="Gallery Image">
+        <div id="modalCaption" class="modal-caption"></div>
+        <button class="modal-nav next-btn" onclick="changeImage(1)">&#10095;</button>
+    </div>
+
+    <!-- Article Modal -->
+    <div id="articleModal" class="modal">
+        <span class="modal-close" onclick="closeArticle()">&times;</span>
+        <div class="article-modal-box">
+            <h2 id="articleModalTitle"></h2>
+            <div class="meta" id="articleModalMeta"></div>
+            <img id="articleModalImg" src="" alt="Article Banner">
+            <div id="articleModalContent"></div>
+        </div>
+    </div>
+
+    <!-- Visitor Information & Contact -->
+    <div class="info-box" id="visit">
+        <div class="info-item">
+            <h4 class="lang-text" data-th="เวลาทำการ" data-en="Opening Hours" data-zh="开放时间">เวลาทำการ</h4>
+            <p class="lang-text" data-th="เปิดทุกวัน: ๐๘:๓๐ - ๑๖:๓๐ น." data-en="Open Daily: 8:30 AM - 4:30 PM" data-zh="每天开放: 08:30 - 16:30">เปิดทุกวัน: ๐๘:๓๐ - ๑๖:๓๐ น.</p>
+            <p style="font-size:0.85rem; color:var(--text-muted);" class="lang-text" data-th="(เปิดบริการทุกวัน ไม่มีวันหยุด)" data-en="(Open daily, including public holidays)" data-zh="(全年无休)">(เปิดบริการทุกวัน ไม่มีวันหยุด)</p>
+        </div>
+        <div class="info-item">
+            <h4 class="lang-text" data-th="เบอร์โทรศัพท์ติดต่อ" data-en="Phone Contact" data-zh="联系电话">เบอร์โทรศัพท์ติดต่อ</h4>
+            <p><a href="tel:0636683555">📞 ๐๖๓-๖๖๘-๓๕๕๕</a></p>
+            <p><a href="tel:0818862886">📞 ๐๘๑-๘๘๖-๒๘๘๖</a></p>
+            <p><a href="tel:0887888205">📞 ๐๘๘-๗๘๘-๘๒๐๕</a></p>
+        </div>
+        <div class="info-item">
+            <h4 class="lang-text" data-th="เฟสบุ๊กแฟนเพจ" data-en="Facebook Page" data-zh="Facebook 专页">เฟสบุ๊กแฟนเพจ</h4>
+            <p><a href="https://www.facebook.com" target="_blank">📘 บ้านธรรมสถิตย์</a></p>
+        </div>
+        <div class="info-item">
+            <h4 class="lang-text" data-th="การเดินทาง" data-en="Location & Map" data-zh="地理位置与导航">การเดินทาง</h4>
+            <p><a href="https://maps.app.goo.gl/iLSVSCJrQBqy1eLS8?g_st=ic" target="_blank">🗺️ พิกัด Google Maps</a></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="lang-text" 
+           data-th="&copy; ๒๕๖๙ บ้านธรรมสถิตย์ - ผู้สืบสานสกุลช่างพิษณุโลก จ่าทวี All Rights Reserved." 
+           data-en="&copy; 2026 Baan Thumsathis - Inheritors of Phitsanulok Craftsman Lineage by Sgt. Maj. Thawee. All Rights Reserved."
+           data-zh="&copy; 2026 彭世洛ธรรมสถิตย์艺术馆 - 贾特威传统工艺传人 版权所有">
+           &copy; ๒๕๖๙ บ้านธรรมสถิตย์ - ผู้สืบสานสกุลช่างพิษณุโลก จ่าทวี All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        const galleries = {
+            exhibition: [
+                'exhibition.jpg',
+                'exhibition-1.jpg',
+                'exhibition-3.jpg'
+            ],
+            candle: [
+                'candle-workshop.jpg',
+                'candle-1.jpg',
+                'candle-2.jpg',
+                'candle-3.jpg',
+                'candle-4.jpg'
+            ],
+            learning: [
+                'learning.jpg',
+                'learning-1.jpg',
+                'learning-2.jpg',
+                'learning-3.jpg',
+                'learning-4.jpg',
+                'learning-5.jpg',
+                'learning-6.jpg',
+                'learning-7.jpg',
+                'learning-8.jpg',
+                'learning-9.jpg'
+            ],
+            activity4: [
+                'activity-4.jpg',
+                'activity-4-1.jpg',
+                'activity-4-2.jpg',
+                'activity-4-3.jpg',
+                'activity-4-4.jpg',
+                'activity-4-5.jpg',
+                'activity-4-6.jpg',
+                'activity-4-7.jpg',
+                'activity-4-8.jpg',
+                'activity-4-9.jpg'
+            ]
+        };
+
+        const arabicToThaiNums = ['๐', '๑', '๒', '๓', '๔', '๕', '๖', '๗', '๘', '๙'];
+        function toThaiNumber(num) {
+            return num.toString().replace(/\d/g, d => arabicToThaiNums[d]);
+        }
+
+        const articlesData = {
+            art1: {
+                date: '๒๕๖๙-๐๓-๐๑',
+                img: 'article-1.jpg',
+                title: {
+                    th: 'สายน้ำแห่งศรัทธา จากตำนานปาฏิหาริย์ สู่หัตถศิลป์ "สกุลช่างจ่าทวี"',
+                    en: 'Stream of Faith: From Sacred Legend to Master Craftsmanship of Sgt. Maj. Thawee\'s School of Art',
+                    zh: '信仰之源：从神奇传说到“贾特威流派”的佛雕艺术'
+                },
+                content: {
+                    th: `
+                        <p>หากกล่าวถึง <strong>พระพุทธชินราช</strong> พระพุทธรูปที่ได้รับการยกย่องว่างดงามที่สุดองค์หนึ่งในสยาม ย่อมต้องนึกถึงตำนานการสร้างในสมัยพญาลิไท (พระมหาธรรมราชาที่ ๑) ที่การเททองหล่อองค์พระประสบปัญหาถึงสองครั้งสองครา จนกระทั่ง ท้าวสักกะรินทร์เทวราช (พระอินทร์) ได้นฤมิตตนเป็น ตาปะขาว บุคคลปริศนานุ่งขาวห่มขาว ปรากฏกายมาช่วยช่างปั้นและหล่อองค์พระจนสำเร็จสมบูรณ์ ไร้ร่องรอยตำหนิ พร้อมสลักสัญลักษณ์ "ตรีศูล" ไว้ที่พระพักตร์เฉกเช่นทิพย์เนตรของพระองค์</p>
+                        <p>เมื่อภารกิจแห่งศรัทธาเสร็จสิ้น ตาปะขาวได้เก็บข้าวของก้าวเดินออกจากวัดพระศรีรัตนมหาธาตุวรมหาวิหาร มุ่งหน้าไปทาง ประตูเมืองด้านทิศเหนือ โดยมีชาวบ้านและช่างหล่อเดินติดตามไปห่างๆ เพื่อหวังจะตอบแทนน้ำใจ ตาปะขาวเดินเท้าขึ้นไปทางทิศเหนือเรื่อยๆ เป็นระยะทางประมาณ ๕ กิโลเมตร จนกระทั่งหยุดพัก ณ ศาลาไม้ริมทาง ณ ชุมชนบ้านเตาไห</p>
+                        <p>ทันใดนั้น ตาปะขาวได้ ลอยตัวขึ้นกลางอากาศ แล้วอันตรธานหายไป พร้อมปรากฏสายแสงเปล่งรัศมีพุ่งแหวกทะลุหลังคาศาลาไม้ขึ้นสู่ท้องฟ้า ทุกคนจึงเชื่อมั่นโดยพร้อมกันว่าตาปะขาวผู้นี้คือพระอินทร์แปลงกายลงมาช่วยเหลือ ชาวบ้านจึงร่วมใจกันตั้งชื่อศาลาไม้แห่งนั้นว่า "ศาลาช่องฟ้า" เพื่อระลึกถึงจุดที่สายแสงพุ่งแหวกหลังคาขึ้นสู่ฟ้า และเรียกบริเวณรอบๆ นั้นว่า "บ้านตาปะขาวหาย" ก่อนจะสถาปนาขึ้นเป็น วัดตาปะขาวหาย ในเวลาต่อมา</p>
+                        
+                        <h4>รอยต่อแห่งปาฏิหาริย์ สู่ถิ่นกำเนิดปรมาจารย์ช่าง</h4>
+                        <p>ดินแดนแห่งนี้มิได้เป็นเพียงถิ่นกำเนิดเตาเผาโบราณมาตั้งแต่สมัยสุโขทัยตอนต้นเท่านั้น แต่ยังเป็นรอยต่อสำคัญที่ทำให้ "จิตวิญญาณแห่งงานช่างและความศรัทธา" ไหลเวียนและถ่ายทอดอยู่อย่างไม่ขาดสาย</p>
+                        <p>ในคืนดึกสงัดของวันที่ ๙ ตุลาคม พ.ศ. ๒๔๗๕ ท่ามกลางพายุฝนอันรุนแรงที่ทำให้ต้นไม้ใหญ่หักโค่นขวางทางไปสุขศาลา คุณแม่อุ่นเรือน บูรณเขตต์ ได้หยุดพักคลอดบุตรชายคนที่สอง ณ ศาลาช่องฟ้า หมุดหมายศักดิ์สิทธิ์ใจกลางบ้านตาปะขาวหาย เด็กชายผู้นั้นคือ จ่าทวี (จ.ส.อ. ทวี บูรณเขตต์) ผู้ถือกำเนิดขึ้น ณ จุดเดียวกับที่ตำนานเล่าขานถึงสายแสงอันตรธานของตาปะขาว มรดกงานปั้นดินเผาของท้องถิ่นได้หล่อหลอมให้ท่านเติบโตมาพร้อมกับสายเลือดของ "ช่างปั้นหล่อ" โดยแท้จริง</p>
+                        <p>ตลอดชีวิตที่ผ่านมา จ่าทวีได้ทุ่มเทศึกษา ฝึกฝน และสั่งสมทักษะงานปฏิมากรรมอย่างลึกซึ้ง จนได้รับการยกย่องในวงการพุทธศิลป์ว่าเป็นช่างปั้นหล่อผู้สามารถถ่ายทอดเส้นสาย ความอ่อนช้อย และพุทธลักษณะอันทรงพลังของพระพุทธชินราชได้อย่างมีชีวิตและถูกต้องตามโบราณราชประเพณี</p>
+                        
+                        <h4>จากตำนานความเชื่อ สู่หลักฐานบันทึกทางประวัติศาสตร์</h4>
+                        <p>ความเชี่ยวชาญและจิตวิญญาณงานช่างที่เติบโตมาจากถิ่นกำเนิดตำนาน ทำให้ผลงานของ <strong>สกุลช่างจ่าทวี</strong> ได้รับความไว้วางใจในพิธีจัดสร้างพระพุทธชินราชจำลองครั้งสำคัญระดับประเทศเสมอมา ดังปรากฏหลักฐานในเอกสารบันทึกประวัติศาสตร์ เช่น:</p>
+                        <ul>
+                            <li><strong>พระพุทธชินราชจำลอง รุ่น ภปร. (ปี ๒๕๑๗):</strong> จัดสร้างโดย พลโท สำราญ แพทยกุล (อดีตแม่ทัพภาคที่ ๓) ซึ่งคณะกรรมการได้มอบหมายให้ จ.ส.อ. ทวี บูรณเขตต์ เป็นผู้ปั้นหุ่นและประกอบพิธีหล่อ ณ บริเวณศาลาช่องฟ้า วัดตาปะขาวหาย โดยตรง เพื่อความเป็นสิริมงคลและยึดโยงกับรอยต่อทางประวัติศาสตร์</li>
+                            <li><strong>พระพุทธชินราชจำลอง รุ่นพระมาลาเบี่ยง (ปี ๒๕๒๐):</strong> จัดสร้างโดยวัดพระศรีรัตนมหาธาตุวรมหาวิหาร จังหวัดพิษณุโลก ซึ่งได้ไว้วางใจให้ จ.ส.อ. ทวี บูรณเขตต์ เป็นช่างปฏิมากรหลักในการปั้นหุ่นและทำการหล่อทองทั้งหมด</li>
+                        </ul>
+                        
+                        <h4>คุณค่าแห่งการอัญเชิญไปบูชา</h4>
+                        <p>สำหรับผู้ที่ตั้งจิตศรัทธาและมองหาพระพุทธชินราชจำลองเพื่ออัญเชิญไปประดิษฐานเป็นสิริมงคลแก่บ้านเรือน การพิจารณาเลือกองค์พระจึงไม่ใช่เพียงเรื่องของความงดงามทางประติมากรรมภายนอกเท่านั้น แต่คือการรับรู้ถึง "ที่มา จิตวิญญาณ และคุณค่าของช่างผู้รังสรรค์"</p>
+                        <p>เมื่อองค์พระพุทธชินราชถูกปั้นและหล่อขึ้นโดย <strong>สกุลช่างจ่าทวี</strong> ผู้ซึ่งถือกำเนิด ณ ศาลาช่องฟ้า วัดตาปะขาวหาย เติบโตและใช้ทั้งชีวิตในการสืบทอดงานพุทธศิลป์พิษณุโลก... องค์พระชินราชจำลองนั้นจึงกลายเป็นผลงานที่เชื่อมโยงเรื่องราวตั้งแต่ตำนานศรัทธาในอดีต มาสู่ฝีมือความประณีตอันเป็นเอกลักษณ์ในปัจจุบันได้อย่างสมบูรณ์ โดยให้คุณค่าและความหมายที่แท้จริงแก่ผู้บูชาได้นึกถึงและสัมผัสได้ด้วยตนเอง</p>
+                    `,
+                    en: '<p>Exploring the miraculous legend of casting Phra Buddha Chinnarat at Wat Ta Pa Khao Hai and its profound connection to Sgt. Maj. Thawee\'s lineage of sacred Buddhist arts...</p><p>Ancient casting wisdom and the preservation of authentic Thai Buddhist art styles serve as invaluable cultural heritage passed down across generations.</p>',
+                    zh: '<p>探索成功佛在 Wat Ta Pa Khao Hai 铸造的神奇传说及其与贾特威流派的深厚渊源，以无比的虔诚与精湛工艺传承佛教艺术...</p><p>古法铸造智慧与正统泰国佛教艺术风格的保护，是代代相传的宝贵文化遗产。</p>'
+                }
+            },
+            art2: {
+                date: '๒๕๖๙-๐๒-๑๕',
+                img: 'article-2.jpg',
+                title: {
+                    th: 'มุมเงย (Perspective Distortion)',
+                    en: 'Visual Correction for Low-Angle Viewing (Perspective Distortion)',
+                    zh: '低角度仰视的视觉矫正 (Perspective Distortion)'
+                },
+                content: {
+                    th: '<p>เกิดจากประสบการณ์ในการปั้น - หล่อพุทธศิลป์สกุลช่างพิษณุโลก จ่าทวี กล่าวคือ เมื่อผู้ศรัทธาต้องเงยหน้ามองพระพุทธรูปจากระดับต่ำขึ้นไปสูง จะเกิดความเหลื่อมล้ำทางสายตา...</p><p>ครูช่างจึงได้คิดค้นเทคนิคการคำนวณสัดส่วนองค์พระเพื่อให้เมื่อมองจากมุมเงยแล้วมีความสมส่วน สง่างาม และสมบูรณ์แบบที่สุด</p>',
+                    en: '<p>Reflecting generations of experience in sculpting and casting Buddhist images within the Phitsanulok School of Art by Sgt. Maj. Thawee. When devotees look up at a large Buddha image from below, optical distortion occurs...</p><p>Master craftsmen developed precise proportion calculation techniques so that the image appears perfectly majestic and balanced from a low viewing angle.</p>',
+                    zh: '<p>源于彭世洛“贾特威流派”在佛教艺术雕塑与铸造方面的世代经验。当信众从下方仰视大浮时，会产生视觉上的畸变与偏差...</p><p>因此，工匠大师们研究并掌握了独特的比例修正技术，使得佛像在低角度仰视时依然比例匀称、庄严神圣。</p>'
+                }
+            },
+            art3: {
+                date: '๒๕๖๙-๐๑-๒๐',
+                img: 'article-3.jpg',
+                title: {
+                    th: 'การอนุรักษ์กระจกเกรียบและกระจกจืน',
+                    en: 'Preservation of Kriap and Chun Glass Mosaic Crafts',
+                    zh: 'Kriap 与 Chun 薄片玻璃镶嵌工艺的保护与传承'
+                },
+                content: {
+                    th: '<p>ความเชื่อในงานประติมากรรมการประดับกระจกสะท้อนถึง แสงสว่างแห่งธรรม และการอนุรักษ์กระจกโบราณกว่า ๑๕๐ ปี...</p><p>การฟื้นฟูกรรมวิธีการผลิตกระจกเกรียบและกระจกจืนโบราณ ช่วยให้งานประดับตกแต่งศาสนสถานและงานพุทธศิลป์มีความงดงามทรงคุณค่าตามแบบฉบับโบราณดั้งเดิม</p>',
+                    en: '<p>The belief in glass mosaic decoration reflecting the "Light of Dhamma" and restoring ancient glass techniques lost for over 150 years...</p><p>Reviving ancient Kriap and Chun glass-making techniques ensures that sacred architectural decorations and Buddhist arts retain their authentic traditional splendor.</p>',
+                    zh: '<p>雕塑中的贴镜镶嵌艺术承载着“佛法之光”的信仰，以及对失传150多年传统玻璃工艺的保护与复兴...</p><p>恢复古法 Kriap 与 Chun 玻璃制造工艺，使寺庙建筑装饰与佛教艺术得以完美重现传统纯正的光彩。</p>'
+                }
+            },
+            art4: {
+                date: '๒๕๖๙-๐๓-๑๐',
+                img: 'article-4.jpg',
+                title: {
+                    th: 'รัศมีดาริกาแห่งพุทธบูชา: อลังการงานประดับมุกบนฐานพุทธปฏิมา',
+                    en: 'Radiance of Pearl Offerings: The Magnificent Pearl Inlay on Buddha Image Bases',
+                    zh: '佛宝珍珠之光：佛像底座珍珠镶嵌艺术的辉煌'
+                },
+                content: {
+                    th: `
+                        <p>สุนทรียภาพที่ปรากฏบนฐานพระพุทธรูปจากการบรรจงประดับ <strong>"เปลือกหอยมุก"</strong> มิใช่เพียงการตกแต่งเพื่อความตระการตาในทางกายภาพเท่านั้น หากแต่เป็นงานประณีตศิลป์ที่สะท้อนถึงปัญญาบารมีและความเลื่อมใสอันสถิตอยู่ในจิตวิญญาณของผู้สร้างสรรค์ โดยมีนัยสำคัญที่ควรค่าแก่การพิจารณาดังนี้:</p>
+                        
+                        <h4>๑. รังสรรค์วิจิตรตระการ (ความงามเชิงประณีตศิลป์)</h4>
+                        <p>เปลือกหอยมุกที่ผ่านการคัดสรรชั้นเลิศ เมื่อถูกเจียระไนด้วยความมานะพยายามจนเหลือเพียงชั้นมุกอันบางเฉียบ และบรรจงผนึกสอดประสานเข้ากับลวดลายกนกอย่างลงตัว เกิดเป็น "วิจิตราภรณ์" ที่มีความแวววาวสลับลายรุ้ง ประดุจแสงดาวที่เปล่งประกายหลากมิติ แสงเลื่อมพรายนี้เปรียบเสมือนรัศมีธรรมที่ส่องสว่างนำทางจิตใจของผู้ที่ได้มาทัศนาศรัทธา</p>
+                        
+                        <h4>๒. มงคลแห่งวารีและวิถีแห่งโชค (สิริมงคลและโภคทรัพย์)</h4>
+                        <p>ตามคติโบราณกาล "มุก" คือรัตนชาติที่ถือกำเนิดจากธาตุน้ำอันบริสุทธิ์ เป็นสัญลักษณ์แห่งความบริสุทธิ์ผุดผ่องและการก่อเกิดแห่งชีวิต การนำมุกมาประดับไว้ ณ ฐานรองรับองค์พระพุทธรูป จึงเป็นนิมิตหมายแห่ง "ความร่มเย็นเป็นสุข" และความอุดมสมบูรณ์พูนสุขแก่ผู้สักการะ เชื่อกันว่าพลังแห่งมหาศาครจะช่วยหนุนนำให้ลาภยศและโภคทรัพย์หลั่งไหลมาเทมาดั่งสายน้ำที่ไม่เคยเหือดแห้ง</p>
+                        
+                        <h4>๓. อานุภาพป้องปัดพยันตราย (การคุ้มครองป้องกัน)</h4>
+                        <p>ในทางพุทธศาสตร์และไสยเวทย์ เปลือกมุกมีคุณลักษณะพิเศษในการ "สะท้อนกระจายพลังงาน" ความเลื่อมเงาที่เปลี่ยนไปตามมุมกระทบของแสง เปรียบเสมือนเกราะแก้วกำบังที่ช่วยสลายพลังงานด้านลบและสิ่งอัปมงคลมิให้กร้ำกราย การประดับมุกจึงเป็นกุศโลบายในการสร้างเขตขันธสีมาอันศักดิ์สิทธิ์ เพื่อคุ้มครองป้องกันภัยพิบัติและภยันตรายทั้งปวง ให้แคล้วคลาดปลอดภัยสืบไป</p>
+                    `,
+                    en: `
+                        <p>The aesthetics appearing on Buddha image bases through the meticulous inlay of <strong>pearl shells</strong> are not merely for physical splendor, but represent a fine art reflecting the wisdom, merits, and deep devotion residing within the artisan's spirit:</p>
+                        
+                        <h4>1. Exquisite Creation (Fine Art Aesthetics)</h4>
+                        <p>Carefully selected pearl shells, expertly cut into ultra-thin layers and harmoniously integrated into traditional Thai floral patterns (Kanok), create a brilliant, iridescent "Vichitraporn." This shimmering multi-dimensional glow resembles starlight, symbolizing the illuminating light of the Dhamma guiding the hearts of the faithful.</p>
+                        
+                        <h4>2. Auspicious Waters and Prosperity (Blessings and Wealth)</h4>
+                        <p>According to ancient beliefs, the pearl is a gemstone born from pure waters, symbolizing purity and the genesis of life. Inlaying pearls on the base of a Buddha image signifies peace, tranquility, and boundless prosperity for worshippers. It is believed that the power of the great ocean brings an endless flow of wealth and fortune.</p>
+                        
+                        <h4>3. Protective Power against Peril (Defense and Shielding)</h4>
+                        <p>In Buddhist and mystical traditions, pearl shells possess unique energy-diffusing properties. The shifting iridescence acts as a crystal shield, dissolving negative energies and misfortunes. Pearl inlay serves as a sacred protective boundary to safeguard against all dangers and ensure safety.</p>
+                    `,
+                    zh: `
+                        <p>珍珠贝壳精细镶嵌在佛像底座上所展现的美学，不仅是为了视觉上的壮丽，更是一门体现创作者心灵深处智慧与虔诚的高级传统工艺：</p>
+                        
+                        <h4>1. 精致匠心（工艺美学）</h4>
+                        <p>精选的珍珠贝壳经过打磨至极薄的层度，并与传统的泰式藤蔓花纹（Kanok）完美结合，呈现出虹彩斑斓、光芒四射的迷人效果。这种璀璨的光芒宛如多维闪烁的星光，象征着照亮信众心灵的佛法之光。</p>
+                        
+                        <h4>2. 水之吉祥与财富（福泽与财运）</h4>
+                        <p>根据古老传统，“珍珠”诞生于纯净之水，象征着纯洁与生命的起源。将珍珠镶嵌在佛像底座上，寓意着为顶礼膜拜者带来安详、宁静与丰饶的福报。人们相信大海的力量能够源源不断地带来财富与好运。</p>
+                        
+                        <h4>3. 驱邪护身（庇佑与防御）</h4>
+                        <p>在佛教与玄学传统中，珍珠贝壳具有独特的能量反射特性。其随光线变化的斑斓光泽如同一道水晶护盾，能够消解负能量与不祥之兆。珍珠镶嵌亦是一种结界智慧，旨在抵御一切灾祸，保佑平安吉祥。</p>
+                    `
+                }
+            }
+        };
+
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        function openGallery(key) {
+            currentGallery = galleries[key] || [];
+            if (currentGallery.length === 0) return;
+            
+            currentIndex = 0;
+            updateModalImage();
+            document.getElementById('galleryModal').style.display = 'flex';
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').style.display = 'none';
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = currentGallery.length - 1;
+            if (currentIndex >= currentGallery.length) currentIndex = 0;
+            updateModalImage();
+        }
+
+        function updateModalImage() {
+            const imgElement = document.getElementById('modalImg');
+            const captionElement = document.getElementById('modalCaption');
+            imgElement.src = currentGallery[currentIndex];
+            
+            if (currentLang === 'zh') {
+                captionElement.innerText = `第 ${currentIndex + 1} 张，共 ${currentGallery.length} 张`;
+            } else if (currentLang === 'en') {
+                captionElement.innerText = `Image ${currentIndex + 1} of ${currentGallery.length}`;
+            } else {
+                captionElement.innerText = `รูปที่ ${toThaiNumber(currentIndex + 1)} จาก ${toThaiNumber(currentGallery.length)}`;
+            }
+        }
+
+        function openArticle(key) {
+            const article = articlesData[key];
+            if (!article) return;
+
+            document.getElementById('articleModalTitle').innerText = article.title[currentLang] || article.title['th'];
+            
+            let dateText = article.date;
+            if (currentLang === 'th') {
+                dateText = `วันที่: ${article.date}`;
+            } else {
+                let arabicDate = article.date.replace(/[๐-๙]/g, d => '๐๑๒๓๔๕๖๗๘๙'.indexOf(d));
+                dateText = `Date: ${arabicDate}`;
+            }
+            document.getElementById('articleModalMeta').innerText = dateText;
+            document.getElementById('articleModalImg').src = article.img;
+            document.getElementById('articleModalContent').innerHTML = article.content[currentLang] || article.content['th'];
+
+            document.getElementById('articleModal').style.display = 'flex';
+        }
+
+        function closeArticle() {
+            document.getElementById('articleModal').style.display = 'none';
+        }
+
+        const langOrder = ['th', 'en', 'zh'];
+        const langButtonLabels = { th: 'EN', en: '中文', zh: 'TH' };
+        let currentLang = 'th';
+
+        function toggleLanguage() {
+            const currentIndexLang = langOrder.indexOf(currentLang);
+            currentLang = langOrder[(currentIndexLang + 1) % langOrder.length];
+            
+            document.querySelector('.lang-btn').innerText = langButtonLabels[currentLang];
+            
+            const logo = document.getElementById('site-logo');
+            if (currentLang === 'zh') {
+                logo.innerText = '彭世洛 ธรรมสถิตย์ 艺术馆';
+            } else if (currentLang === 'en') {
+                logo.innerText = 'Baan Thumsathis';
+            } else {
+                logo.innerText = 'บ้านธรรมสถิตย์';
+            }
+
+            const elements = document.querySelectorAll('.lang-text');
+            elements.forEach(el => {
+                const text = el.getAttribute(`data-${currentLang}`);
+                if (text) el.innerText = text;
+            });
+        }
+    </script>
+</body>
+</html>
